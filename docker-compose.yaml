@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  app_1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8501
+  app_2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8501
+    command: ["streamlit", "run", "main_2.py"]
+  web_server:
+    image: nginx
+    ports:
+      - 80
+    volumes: 
+      - "./images/:/usr/share/nginx/html"
